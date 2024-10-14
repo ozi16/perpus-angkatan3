@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Permanent+Marker&display=swap" rel="stylesheet" />
 
-  <title>rumah</title>
+  <title>Home</title>
 </head>
 
 <body style="font-family: Indie Flower; font-weight: bold">
