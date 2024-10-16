@@ -4,12 +4,15 @@ session_start();
 
 include 'koneksi.php';
 
-
 // jika sessionnya kosong, maka melempar ke login.php
 // if (empty($_SESSION['nama']) && empty($_SESSION['email'])) {
 //     header("Location:index.php");
 //     exit;
 // }
+
+if (empty($_SESSION['NAMA'])) {
+    header('location:login.php?access=failed');
+}
 ?>
 
 
@@ -59,6 +62,7 @@ include 'koneksi.php';
 
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 
+    <script src="app.js"></script>
 
 
 </body>

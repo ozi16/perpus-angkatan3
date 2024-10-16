@@ -19,6 +19,17 @@
                     <li class="nav-item">
                         <a class="nav-link" href="?pg=buku">Buku</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?pg=anggota">Anggota</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?pg=peminjaman">Transaksi</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 pe-lg-4">
+                    <li class="nav-item ">
+                        <a class="nav-link " href="keluar.php">Keluar</a>
+                    </li>
                 </ul>
             </div>
         </div>

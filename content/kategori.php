@@ -14,7 +14,6 @@ $kategori = mysqli_query($koneksi, "SELECT * FROM categories ORDER BY id DESC");
 
                 <div class="button-action">
                     <a href="?pg=tambah-kategori" class="btn btn-primary">Add</a>
-
                 </div>
                 <div class="row mt-2">
                     <div class="col-sm-12">

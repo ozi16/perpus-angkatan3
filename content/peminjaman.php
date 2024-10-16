@@ -1,6 +1,6 @@
 <?php
 
-$anggota = mysqli_query($koneksi, "SELECT categories.name_category,books.* FROM books LEFT JOIN categories ON categories.id=books.id_category ORDER BY id DESC");
+$queryPeminjaman = mysqli_query($koneksi, "SELECT anggota.nama_anggota,peminjaman.* FROM peminjaman LEFT JOIN anggota ON anggota.id=peminjaman.id_anggota ORDER BY id DESC");
 
 ?>
 
@@ -9,10 +9,10 @@ $anggota = mysqli_query($koneksi, "SELECT categories.name_category,books.* FROM 
     <div class="row">
         <div class="col-sm-12">
             <fieldset>
-                <legend>Data Buku</legend>
+                <legend>Data peminjaman</legend>
 
                 <div class="button-action">
-                    <a href="?pg=tambah-buku" class="btn btn-primary">Add</a>
+                    <a href="?pg=tambah-peminjaman" class="btn btn-primary">Add</a>
                 </div>
                 <div class="row mt-2">
                     <div class="col-sm-12">
@@ -20,26 +20,26 @@ $anggota = mysqli_query($koneksi, "SELECT categories.name_category,books.* FROM 
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Kategori</th>
-                                    <th>Nama Buku</th>
-                                    <th>Penerbit</th>
-                                    <th>Tahun terbit</th>
-                                    <th>pengarang</th>
+                                    <th>Nama Anggota</th>
+                                    <th>No Peminjaman</th>
+                                    <th>Tanggal Peminjaman</th>
+                                    <th>Tanggal pengembalian</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 $no = 1;
-                                while ($row = mysqli_fetch_assoc($books)):
+                                while ($row = mysqli_fetch_assoc($queryPeminjaman)):
                                 ?>
                                     <tr>
                                         <td><?php echo $no++ ?></td>
-                                        <td><?php echo $row['name_category'] ?></td>
-                                        <td><?php echo $row['name_book'] ?></td>
-                                        <td><?php echo $row['penerbit'] ?></td>
-                                        <td><?php echo $row['tahun_terbit'] ?></td>
-                                        <td><?php echo $row['pengarang'] ?></td>
+                                        <td><?php echo $row['nama_anggota'] ?></td>
+                                        <td><?php echo $row['no_peminjaman'] ?></td>
+                                        <td><?php echo $row['tgl_peminjaman'] ?></td>
+                                        <td><?php echo $row['tgl_pengembalian'] ?></td>
+                                        <td><?php echo $row['status'] ?></td>
 
                                         <td>
                                             <a href="?pg=tambah-buku&edit=<?php echo $row['id'] ?>" class="btn btn-success btn-sm">
