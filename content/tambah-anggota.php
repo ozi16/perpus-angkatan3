@@ -10,7 +10,7 @@ if (isset($_POST['tambah'])) {
     // sql = struktur query language / DML = data manipulasi language
     // SELECT, INSERT, UPDATE, DELETE
 
-    $insert = mysqli_query($koneksi, "INSERT INTO anggota (nama_anggota,,telepon ,email, alamat) VALUES ('$nama','$telepon','$email','$alamat')");
+    $insert = mysqli_query($koneksi, "INSERT INTO anggota (nama_anggota,telepon ,email, alamat) VALUES ('$nama','$telepon','$email','$alamat')");
     header("location:?pg=anggota&tambah=berhasil");
 }
 

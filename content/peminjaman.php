@@ -1,6 +1,6 @@
 <?php
 
-$queryPeminjaman = mysqli_query($koneksi, "SELECT anggota.nama_anggota,peminjaman.* FROM peminjaman LEFT JOIN anggota ON anggota.id=peminjaman.id_anggota ORDER BY id DESC");
+$queryPeminjaman = mysqli_query($koneksi, "SELECT anggota.nama_anggota, peminjaman.* FROM peminjaman LEFT JOIN anggota ON anggota.id = peminjaman.id_anggota ORDER BY id DESC");
 
 ?>
 
@@ -42,10 +42,10 @@ $queryPeminjaman = mysqli_query($koneksi, "SELECT anggota.nama_anggota,peminjama
                                         <td><?php echo $row['status'] ?></td>
 
                                         <td>
-                                            <a href="?pg=tambah-buku&edit=<?php echo $row['id'] ?>" class="btn btn-success btn-sm">
-                                                edit
+                                            <a href="?pg=tambah-peminjaman&detail=<?php echo $row['id'] ?>" class="btn btn-success btn-sm">
+                                                detail
                                             </a>
-                                            <a href="?pg=tambah-buku&delete=<?php echo $row['id'] ?>" class="btn btn-success btn-sm" onclick="return confirm('Apakah anda yakin menghapus data ini?')">
+                                            <a href="?pg=tambah-peminjaman&delete=<?php echo $row['id'] ?>" class="btn btn-success btn-sm" onclick="return confirm('Apakah anda yakin menghapus data ini?')">
                                                 delete
                                             </a>
                                         </td>

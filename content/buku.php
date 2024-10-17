@@ -1,6 +1,6 @@
 <?php
 
-$anggota = mysqli_query($koneksi, "SELECT categories.name_category,books.* FROM books LEFT JOIN categories ON categories.id=books.id_category ORDER BY id DESC");
+$books = mysqli_query($koneksi, "SELECT categories.name_category,books.* FROM books LEFT JOIN categories ON categories.id=books.id_category ORDER BY id DESC");
 
 ?>
 
