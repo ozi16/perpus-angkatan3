@@ -44,12 +44,10 @@ $queryBuku = mysqli_query($koneksi, "SELECT * FROM books");
 $queryAnggota = mysqli_query($koneksi, "SELECT * FROM anggota");
 
 // untuk memunculkan no peminjaman di tambah buku
-$queryKodePnjm = mysqli_query($koneksi, "SELECT MAX(id) AS id_pinjam FROM peminjaman");
-$rowPeminjaman = mysqli_fetch_assoc($queryKodePnjm);
-$id_pinjam = $rowPeminjaman['id_pinjam'];
-$id_pinjam++;
+$queryKodePnjm = mysqli_query($koneksi, "SELECT * FROM peminjaman WHERE status ='di pinjam'");
 
-$kode_pinjam = "PJM/" . date('dmy') . "/" . sprintf("%03s", $id_pinjam);
+
+
 
 ?>
 
@@ -58,58 +56,63 @@ $kode_pinjam = "PJM/" . date('dmy') . "/" . sprintf("%03s", $id_pinjam);
     <div class="row">
         <div class="col-sm-12">
             <fieldset>
-                <legend><?php echo isset($_GET['detail']) ? 'Detail' : 'Tambah' ?> Buku</legend>
+
+                <legend><?php echo isset($_GET['detail']) ? 'Detail' : 'Tambah' ?> Pengembalian</legend>
 
                 <form action="" method="post">
                     <div class="mb-3 row">
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="form-label">No Peminjaman</label>
-                                <input type="text" class="form-control" name="no_peminjaman" value="<?php echo isset($_GET['detail']) ? $rowPeminjam['no_peminjaman'] : $kode_pinjam ?>" readonly>
+                                <select name="id_peminjaman" id="id_peminjaman" class="form-control">
+                                    <!-- data option ngambil dari tabel peminjaman -->
+                                    <option value="">--No Peminjam</option>
+                                    <?php while ($rowPeminjaman = mysqli_fetch_assoc($queryKodePnjm)): ?>
+                                        <option value="<?php echo $rowPeminjaman['no_peminjaman'] ?>"><?php echo $rowPeminjaman['no_peminjaman']; ?></option>
+                                    <?php endwhile ?>
+                                </select>
                             </div>
-                            <div class="mb-3">
-                                <label for="form-label">Tanggal Peminjaman</label>
-                                <input type="date" class="form-control" name="tgl_peminjaman" value="<?php echo isset($_GET['detail']) ? $rowPeminjam['tgl_peminjaman'] : "" ?>" <?php echo isset($_GET['detail']) ? 'readonly' : '' ?> required>
-                                <div class="mb-3">
-                                    <label for="form-label">Nama Buku</label>
-                                    <select name="" id="id_buku" class="form-control" required>
-                                        <option value="">Pilih Buku</option>
-                                        <!-- ini ngambil data dari tabel buku -->
-                                        <?php while ($rowBuku = mysqli_fetch_assoc($queryBuku)): ?>
-                                            <option value="<?php echo $rowBuku['id']; ?>"><?php echo $rowBuku['name_book'] ?></option>
-                                        <?php endwhile ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <?php if (empty($_GET['detail'])) : ?>
-                                    <div class="mb-3">
-                                        <label for="form-label">Nama Anggota</label>
-                                        <?php if (!isset($_GET['detail'])): ?>
-                                            <select name="id_anggota" id="" class="form-control" required>
-                                                <option value="">Pilih Anggota</option>
-                                                <!-- ini ngambil data dari tabel anggota -->
-                                                <?php while ($rowAnggota = mysqli_fetch_assoc($queryAnggota)) : ?>
-                                                    <option value="<?php echo $rowAnggota['id'] ?>">
-                                                        <?php echo $rowAnggota['nama_anggota'] ?>
-                                                    </option>
-                                                <?php endwhile ?>
-                                            </select>
-                                        <?php else: ?>
-                                            <input type="text" class="form-control" value="<?php echo $rowPeminjam['nama_anggota'] ?>">
-                                        <?php endif; ?>
-                                    <?php endif ?>
-                                    </div>
+                            <!--  -->
 
-                                    <div class="mb-3">
-                                        <label for="form-label">Tanggal pengembalian</label>
-                                        <input type="date" class="form-control" name="tgl_pengembalian" value="<?php echo isset($_GET['detail']) ? $rowPeminjam['tgl_pengembalian'] : "" ?>" <?php echo isset($_GET['detail']) ? 'readonly' : '' ?> required>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    Data Peminjam
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label for="">No Peminjaman</label>
+                                                <input type="text" readonly id="no_pinjam" class="form-control">
+                                                <!-- memanggil id menggunakan # dan class menggunakan . -->
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="">Tanggal Peminjaman</label>
+                                                <input type="text" readonly id="tgl_peminjaman" class="form-control">
+                                                <!-- memanggil id menggunakan # dan class menggunakan . -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label for="">Nama Anggota</label>
+                                                <input type="text" readonly id="nama_anggota" class="form-control">
+                                                <!-- memanggil id menggunakan "#" dan class menggunakan "." -->
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="">Tanggal Pengembalian</label>
+                                                <input type="text" readonly id="no_pengembalian" class="form-control">
+                                                <!-- memanggil id menggunakan "#" dan class menggunakan "." -->
+                                            </div>
+                                        </div>
                                     </div>
+                                </div>
                             </div>
                         </div>
                         <?php if (empty($_GET['detail'])): ?>
-                            <div align="right">
-                                <button type="button" id="add-row" class="btn btn-primary mb-3">Tambah</button>
+                            <div align="right" class="mt-3 mb-3">
+                                <button type="button" id="add-row" class="btn btn-primary ">Tambah</button>
                             </div>
                         <?php endif ?>
 

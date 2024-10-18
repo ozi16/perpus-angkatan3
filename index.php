@@ -47,10 +47,6 @@ if (empty($_SESSION['NAMA'])) {
         </div>
 
 
-
-
-
-
         <?php ?>
         <footer class="text-center mt-4 fixed-bottom p-3 border-top">Copyright &copy; 2024 PPKD - Jakarta Pusat.</footer>
     </div>
@@ -62,8 +58,26 @@ if (empty($_SESSION['NAMA'])) {
 
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
     <script src="app.js"></script>
 
+    <script>
+        $("#id_peminjaman").change(function() {
+            let no_peminjaman = $(this).find('option:selected').val();
+            console.log(no_peminjaman)
+            $.ajax({
+                url: "ajax/getPeminjam.php?no_peminjaman=" + no_peminjaman,
+                type: "get",
+                dataType: "json",
+                success: function(res) {
+                    $('#no_pinjam').val(res.data.no_peminjaman);
+                    $('#tgl_peminjaman').val(res.data.no_peminjaman);
+                    $('#no_pengembalian').val(res.data.no_peminjaman);
+                    $('#nama_anggota').val(res.data.no_peminjaman);
+                }
+            });
+        });
+    </script>
 
 </body>
 
