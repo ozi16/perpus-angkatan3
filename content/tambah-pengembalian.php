@@ -117,35 +117,17 @@ $queryKodePnjm = mysqli_query($koneksi, "SELECT * FROM peminjaman WHERE status =
                         <?php endif ?>
 
                         <!-- tablle data dari query dengan PHP -->
-                        <?php if (!empty($_GET['detail'])): ?>
-                            <table class="">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nama Buku</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php echo $no = 1;
-                                    while ($rowDetailPeminjaman = mysqli_fetch_assoc($queryDetailPeminjam)): ?>
-                                        <tr>
-                                            <td><?php $no++ ?></td>
-                                            <td><?php echo $rowDetailPeminjaman['nama_buku'] ?></td>
-                                        </tr>
-                                    <?php endwhile; ?>
-                                </tbody>
-                            </table>
-                        <?php else: ?>
-                            <table class="table table-bordered" id="table">
-                                <thead>
-                                    <tr>
-                                        <th>Nama Buku</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="table-row"></tbody>
-                            </table>
-                        <?php endif ?>
+
+                        <table class="table table-bordered" id="table-pengembalian">
+                            <thead>
+                                <tr>
+                                    <th>Nama Buku</th>
+
+                                </tr>
+                            </thead>
+                            <tbody class="table-row"></tbody>
+                        </table>
+
 
                         <!-- ini table data dari JS -->
 

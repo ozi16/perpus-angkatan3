@@ -61,6 +61,7 @@ if (empty($_SESSION['NAMA'])) {
     <script src="assets/js/jquery-3.7.1.min.js"></script>
     <script src="app.js"></script>
 
+    <!-- untuk memunculkan jika select di tekan maka akan muncul datanya.. -->
     <script>
         $("#id_peminjaman").change(function() {
             let no_peminjaman = $(this).find('option:selected').val();
@@ -71,9 +72,12 @@ if (empty($_SESSION['NAMA'])) {
                 dataType: "json",
                 success: function(res) {
                     $('#no_pinjam').val(res.data.no_peminjaman);
-                    $('#tgl_peminjaman').val(res.data.no_peminjaman);
-                    $('#no_pengembalian').val(res.data.no_peminjaman);
-                    $('#nama_anggota').val(res.data.no_peminjaman);
+                    $('#tgl_peminjaman').val(res.data.tgl_peminjaman);
+                    $('#no_pengembalian').val(res.data.tgl_pengembalian);
+                    $('#nama_anggota').val(res.data.nama_anggota);
+
+
+                    console.log(res);
                 }
             });
         });

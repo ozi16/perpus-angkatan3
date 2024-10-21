@@ -30,7 +30,7 @@ $queryPeminjam = mysqli_query($koneksi, "SELECT anggota.nama_anggota, peminjaman
 
 $rowPeminjam = mysqli_fetch_assoc($queryPeminjam);
 
-$queryDetailPeminjam = mysqli_query($koneksi, "SELECT detail_peminjaman.id_book, books.name_book FROM detail_peminjaman LEFT JOIN books ON detail_peminjaman.id_book = books.id WHERE id_peminjaman = '$id'");
+$queryDetailPeminjam = mysqli_query($koneksi, "SELECT books.name_book, detail_peminjaman.id_book.* FROM detail_peminjaman LEFT JOIN books ON books.id = detail_peminjaman.id_book WHERE id_peminjaman = '$id'");
 
 // untuk delete
 if (isset($_GET['delete'])) {
